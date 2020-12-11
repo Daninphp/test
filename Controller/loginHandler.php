@@ -7,5 +7,4 @@ $controller = new \Controller\Index();
 if(isset($_POST['username']) && isset($_POST['password'])){
   $controller = new \Controller\Index();
   $controller->adminLogin($_POST);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

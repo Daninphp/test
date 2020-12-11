@@ -43,13 +43,14 @@ class Index
     public function adminLogin($data)
     {
         if(!empty($data)){
-            session_start();
             $response = $this->model->checkAdminCredentials($data);
             if(!empty($response)){
+                session_start();
                 $_SESSION['username'] = $response[0]['username'];
                 $_SESSION['password'] = $response[0]['password'];
+                echo json_encode('Successful Login');
             } else {
-                $_SESSION['message'] = "Wrong username or password, try again!";
+                echo json_encode('Error');
             }
         }
     }

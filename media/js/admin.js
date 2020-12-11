@@ -23,3 +23,25 @@ jQuery(".submit").on('click', function(){
         event.preventDefault();
     }
 });
+jQuery("#submit_login").on('click', function () {
+    jQuery.ajax({
+        url: 'controller/loginHandler.php',
+        method: 'post',
+        data: jQuery("#login-form").serialize(),
+    }).done(function (returnResult) {
+        returnResult = JSON.parse(returnResult);
+        if (returnResult == "Error") {
+            jQuery('.message-reporting').append('<h2 class="pos-message">Wrong Username or Password</h2>');
+            setTimeout(function () {
+                location.reload();
+                jQuery('.message-reporting').clear()
+            }, 1000);
+        } else {
+            jQuery('.message-reporting').append('<h2 class="pos-message">Welcome!</h2>');
+            setTimeout(function () {
+                location.reload();
+                jQuery('.message-reporting').clear()
+            }, 1000);
+        }
+    })
+});
